@@ -56,7 +56,7 @@
                     </ul>
                 </div>
             </div>
-            <form method="get" action="{{ route ('products.index') }}" accept accept-charset="UTF-8" role="search"></form>
+            <form method="GET" action="{{ route('products.index') }}" accept-charset="UTF-8" role="search">
                 <div class="table-search">
                     <div>
                         <button class="search-select">
@@ -70,6 +70,7 @@
                         <input class="search-input" type="text" name="search" placeholder="Search product..." value="{{ request('search') }}">
                     </div>
                 </div>
+            </form>
             <div class="table-product-head">
                 <p>Image</p>
                 <p>Name</p>
@@ -84,18 +85,16 @@
                 <p>{{$product->name}}</p>
                 <p>{{$product->category}}</p>
                 <p>{{$product->quantity}}</p>
-                <div style="display: flex;">
-                    <button class="btn btn-sucess" href="{{ route('products.edit', $product->id) }}">
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success" style="padding-top: 4px;padding-bottom: 4px;">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
+                <div style="display: flex;margin: 0px">
+                    <button class="btn btn-success" >
+                        <i class="fas fa-pencil-alt" ></i> 
                     </button>
-                    <form method="post" action="{{route('products.destroy', $product->id)}}" >
+                    <form method="post" action="{{route('products.destroy', $product->id)}}" style="margin-bottom: 0px;">
                         @method('delete')
                         @csrf
                         <button class="btn btn-danger" onclick="deleteConfirm(event)">
-                        <i class="far fa-trash-alt"></i>
-                    </button>   
+                            <i class="far fa-trash-alt"></i>
+                        </button>   
                     </form>
                 </div>
                 @endforeach
